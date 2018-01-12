@@ -1,0 +1,32 @@
+#!/bin/sh
+#############################################################################
+# Dave Hale's Gradle script for Mac OS X
+# Assumes that gradle (not just a gradlew) is in the PATH.
+# Adapted from gw.sh by Doug Borg (gist.github.com/dougborg)
+ 
+BUILD_GRADLE='build.gradle'
+BUILD_GRADLE_FOUND=false
+CURR_PATH="${PWD}"
+ 
+function error_exit() {
+  echo "${@}" >&2
+  exit 1
+}
+ 
+# Search recursively upwards for a build.gradle.
+until [[ "${CURR_PATH}" == "/" ]] || ${BUILD_GRADLE_FOUND}; do
+  if [[ -e "${CURR_PATH}/${BUILD_GRADLE}" ]]; then
+    BUILD_GRADLE_FOUND=true
+    BUILD_GRADLE="${CURR_PATH}/${BUILD_GRADLE}"
+  else 
+    CURR_PATH=$(dirname "${CURR_PATH}")
+  fi
+done
+ 
+# Fail fast if we don't find a build.gradle.
+! ${BUILD_GRADLE_FOUND} && error_exit \
+"Unable to find a ${BUILD_GRADLE} in any parent directory of ${PWD}." 
+ 
+# Run gradle in the directory that contains build.gradle.
+cd $(dirname ${BUILD_GRADLE}) && gradle --daemon "${@}"
+
