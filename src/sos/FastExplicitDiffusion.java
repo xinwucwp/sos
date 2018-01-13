@@ -105,23 +105,25 @@ public class FastExplicitDiffusion {
     FedStep fs = new FedStep(t,_m,_d);
     float[] ts = fs.getSteps(true);
     int nc = ts.length;
-    Stopwatch sw = new Stopwatch();
-    sw.start();
+    //Stopwatch sw = new Stopwatch();
+    //sw.start();
     int ik = 0;
     int nk = _m*nc;
     for (int m=0; m<_m; ++m) {
     for (int ic=0; ic<nc; ++ic) {
+      /*
       if (ik>0) {
         double timeUsed = sw.time();
         double timeLeft = ((double)nk/(double)ik-1.0)*timeUsed;
         int timeLeftSec = 1+(int)timeLeft;
         trace("Linear diffusion: done in "+timeLeftSec+" seconds");
       }
+      */
       applyLaplacian(et,-ts[ic],copy(gx),gx);
       ik++;
     }}
-    sw.stop();
-    trace("Linear diffusion: done");
+    //sw.stop();
+    //trace("Linear diffusion: done");
     return gx;
   }
 
