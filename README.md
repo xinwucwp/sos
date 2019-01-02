@@ -13,8 +13,7 @@ If you find this work helpful in your research, please cite:
 
     @article{wu2019detect,
         author = {Xinming Wu and Zhenwei Guo},
-        title = {Detecting faults and channels while enhancing seismic structural and stratigraphic features
-},
+        title = {Detecting faults and channels while enhancing seismic structural and stratigraphic features},
         journal = {INTERPRETATION},
         volume = {7},
         number = {1},
