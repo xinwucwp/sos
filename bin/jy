@@ -15,7 +15,6 @@ $LIBS_HOME/libs/gluegen-rt.jar:\
 $LIBS_HOME/libs/jogl-all.jar:\
 $LIBS_HOME/libs/jythonlib.jar:\
 $IGI_HOME/build/classes:\
-$WHEELER_WLW_HOME/build/classes:\
 .
 
 # Run a server 64-bit VM with assertions enabled and a 1GB max Java heap.
